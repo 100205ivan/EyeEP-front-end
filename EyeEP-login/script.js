@@ -5,6 +5,7 @@ const passwordToggle = document.querySelector("#passwordToggle");
 const loginButton = document.querySelector("#loginButton");
 const accountError = document.querySelector("#accountError");
 const passwordError = document.querySelector("#passwordError");
+const successMessage = document.querySelector("#successMessage");
 
 const visibleEyeIcon = `
   <svg class="eye-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -63,16 +64,19 @@ accountInput.addEventListener("input", () => {
   if (accountInput.value.trim()) {
     setError(accountInput, accountError, "");
   }
+  successMessage.textContent = "";
 });
 
 passwordInput.addEventListener("input", () => {
   if (passwordInput.value.trim()) {
     setError(passwordInput, passwordError, "");
   }
+  successMessage.textContent = "";
 });
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  successMessage.textContent = "";
 
   if (!validateForm()) {
     return;
@@ -82,5 +86,6 @@ loginForm.addEventListener("submit", (event) => {
 
   window.setTimeout(() => {
     setLoading(false);
-  }, 1200);
+    successMessage.textContent = "登入成功（UI展示用）";
+  }, 450);
 });
