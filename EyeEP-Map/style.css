@@ -1,0 +1,363 @@
+:root {
+    --bg: #eef6fb;
+    --card: #ffffff;
+    --text: #172033;
+    --muted: #64748b;
+    --line: #d9e7f1;
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --primary-soft: #dbeafe;
+    --accent: #0f766e;
+    --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(147, 197, 253, 0.28), transparent 32rem),
+        linear-gradient(135deg, #f8fbff 0%, var(--bg) 58%, #f3f7fb 100%);
+}
+
+button,
+svg [role="button"] {
+    font: inherit;
+}
+
+.page-shell {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.hero {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+}
+
+.hero-text {
+    margin: 12px auto 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.8fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+.card {
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: var(--shadow);
+}
+
+.map-card,
+.selection-card {
+    padding: 24px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.heading-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 6px rgba(15, 118, 110, 0.12);
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.map-wrap {
+    display: grid;
+    place-items: center;
+    min-height: 680px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(239, 246, 255, 0.9), rgba(248, 250, 252, 0.9));
+    overflow: visible;
+}
+
+.taiwan-map {
+    width: min(100%, 700px);
+    height: auto;
+    overflow: visible;
+}
+
+.county {
+    cursor: pointer;
+    fill: var(--county-fill, #bfdbfe);
+    stroke: #ffffff;
+    stroke-width: 2.6;
+    stroke-linejoin: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+        transform 180ms ease,
+        filter 180ms ease,
+        opacity 180ms ease,
+        fill 180ms ease;
+}
+
+.county:hover,
+.county:focus,
+.county.is-active {
+    fill: #38bdf8;
+    filter: url("#countyShadow");
+    transform: translateY(-8px) scale(1.03);
+    opacity: 1;
+    outline: none;
+}
+
+.county:focus-visible {
+    stroke: #0f172a;
+    stroke-width: 4;
+}
+
+#taipei-city,
+#new-taipei-city,
+#keelung-city,
+#taoyuan-city {
+    --county-fill: #93c5fd;
+}
+
+#hsinchu-city,
+#hsinchu-county,
+#miaoli-county,
+#taichung-city {
+    --county-fill: #a7f3d0;
+}
+
+#changhua-county,
+#nantou-county,
+#yunlin-county,
+#chiayi-city,
+#chiayi-county {
+    --county-fill: #fde68a;
+}
+
+#tainan-city,
+#kaohsiung-city,
+#pingtung-county {
+    --county-fill: #fca5a5;
+}
+
+#yilan-county,
+#hualien-county,
+#taitung-county {
+    --county-fill: #67e8f9;
+}
+
+#penghu-county,
+#kinmen-county,
+#lienchiang-county {
+    --county-fill: #c4b5fd;
+}
+
+.island-inset {
+    pointer-events: none;
+}
+
+.inset-frame {
+    fill: rgba(255, 255, 255, 0.72);
+    stroke: #94a3b8;
+    stroke-width: 2.5;
+    filter: drop-shadow(0 10px 16px rgba(15, 23, 42, 0.10));
+}
+
+.inset-title {
+    fill: #334155;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+
+#lienchiang-county {
+    stroke-width: 1.25;
+    transform: matrix(5.2, 0, 0, 5.2, -2068, 425);
+    transform-box: view-box;
+    transform-origin: 0 0;
+}
+
+#lienchiang-county:hover,
+#lienchiang-county:focus,
+#lienchiang-county.is-active {
+    transform: matrix(5.45, 0, 0, 5.45, -2185, 387);
+}
+
+#kinmen-county {
+    transform: translate(260px, 230px) scale(1.78);
+    transform-box: view-box;
+    transform-origin: 0 0;
+}
+
+#kinmen-county:hover,
+#kinmen-county:focus,
+#kinmen-county.is-active {
+    transform: translate(260px, 222px) scale(1.84);
+}
+
+
+.selection-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.selection-panel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 560px;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.selection-label,
+.template-title {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+#selectedCounty {
+    margin: 8px 0 10px;
+    font-size: clamp(1.65rem, 3vw, 2.2rem);
+    line-height: 1.2;
+}
+
+.instruction {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.template-actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.template-btn {
+    width: 100%;
+    min-height: 52px;
+    border: 0;
+    border-radius: 8px;
+    color: #ffffff;
+    background: var(--primary);
+    cursor: pointer;
+    font-weight: 800;
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+.template-btn:hover,
+.template-btn:focus-visible {
+    background: var(--primary-dark);
+    box-shadow: 0 12px 22px rgba(37, 99, 235, 0.22);
+    transform: translateY(-3px);
+    outline: none;
+}
+
+.result-box {
+    margin-top: auto;
+    padding: 18px;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    background: var(--primary-soft);
+}
+
+.result-kicker {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary-dark);
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+#resultText {
+    margin: 0;
+    color: #10264f;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .map-wrap {
+        min-height: auto;
+        padding: 16px 0;
+    }
+
+    .taiwan-map {
+        width: min(100%, 430px);
+    }
+
+    .selection-panel {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 560px) {
+    .page-shell {
+        width: min(100% - 20px, 1180px);
+        padding: 24px 0;
+    }
+
+    .map-card,
+    .selection-card {
+        padding: 16px;
+    }
+
+    .selection-panel {
+        padding: 18px;
+    }
+
+    .county-label {
+        font-size: 16px;
+    }
+
+    .muted-label {
+        font-size: 13px;
+    }
+}
